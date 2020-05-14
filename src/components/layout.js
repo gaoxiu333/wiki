@@ -1,18 +1,25 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
+import Header from "./header"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import { MDXProvider } from "@mdx-js/react"
+import CodeBlock from "./code-block"
+import Container from "../components/Container"
 
-export default function Layout({children}){
-  return(
-    <div style={{margin:`0 auto`,maxWidth:650,padding:`0 1rem`}}>
-      {children}
-    </div>
+const components = {
+  pre: props => <div {...props} />,
+  code: CodeBlock
+}
+export default function Layout({ children }) {
+  return (
+    <MDXProvider
+      components={components}
+    >
+      <Header/>
+      <Container>
+        {children}
+      </Container>
+      <div>list-right</div>
+    </MDXProvider>
   )
 }

@@ -2,11 +2,38 @@
 title: MDX
 ---
 
-## hello world
-import About from './about'
+# Hello, world!
 
-<About />
+```js
+import React from 'react'
+import Example from './place'
 
-<div style={{ padding: '20px', backgroundColor: 'tomato' }}>
-  <h3>This is JSX</h3>
-</div>
+export default () => <Example />
+```
+
+```js render=true
+<div
+  style={{backgroundColor: 'rebeccapurple', padding: '20px', marginTop: '20px'}}
+/>
+```
+
+```js live=true
+<div style={{backgroundColor: 'tomato', padding: '20px'}} />
+```
+这里有一段话？？？
+```css
+.fancy-box {
+  width: 100px;
+  height: 100px;
+  transform: scale(1);
+  /* No more `transition` here! */
+}
+.fancy-box:hover {
+  transform: scale(1.2);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .fancy-box {
+    transition: transform 300ms !important;
+  }
+}
+```

@@ -5,13 +5,22 @@ module.exports = {
     author: `@gao`,
   },
   plugins: [
-    `gatsby-plugin-mdx`,
+    `gatsby-plugin-emotion`,// css-in-js
+    { // mdx插件，兼容md和mdx格式文件
+      resolve: `gatsby-plugin-mdx`,
+      options:{
+        extensions:['.mdx','.md'],
+        defaultLayouts:{
+          default:require.resolve('./src/components/layout.js')
+        }
+      }
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        name: `src`,
+        path: `${__dirname}/src/`,
       },
     },
     `gatsby-transformer-sharp`,
