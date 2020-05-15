@@ -3,7 +3,6 @@ import Header from "./header"
 import { MDXProvider, } from "@mdx-js/react"
 import CodeBlock from "./code-block"
 import Container from "../components/Container"
-import Post from "../components/Post"
 
 const MyH1 = props => <h1 style={{ color: "tomato" }} {...props} />
 

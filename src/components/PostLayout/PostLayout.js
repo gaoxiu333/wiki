@@ -8,8 +8,6 @@ import TableOfContents from "../TableOfContents"
 import CodeBlock from "../code-block"
 import styled from "@emotion/styled"
 
-
-const MyH1 = props => <h1 style={{ color: "red" }} {...props} />
 const Heading = {
   H1: props => <h1 style={{ color: "red" }} {...props} />,
   H2: props => {
@@ -19,7 +17,6 @@ const Heading = {
     )
   },
   H3: props => <h3 style={{ color: "red" }} {...props} />
-
 }
 
 const components = {
@@ -32,7 +29,6 @@ const components = {
 
 }
 export default function PostLayout({ data }) {
-  console.log(data)
   return (
     <Container>
       <MDXProvider components={components}>

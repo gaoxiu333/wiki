@@ -1,9 +1,8 @@
 import React from 'react'
 import Highlight, {defaultProps} from 'prism-react-renderer'
-import {syntaxTheme} from './them'
+import {syntaxTheme} from '../theme/code'
 export default ({children, className}) => {
   const language = className?className.replace(/language-/, ''):'sh'
-  console.log('defaultProps',defaultProps)
   return (
     <Highlight {...defaultProps} theme={syntaxTheme} code={children} language={language}>
       {({className, style, tokens, getLineProps, getTokenProps}) => (

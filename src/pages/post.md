@@ -1,3 +1,13 @@
+---
+title: postDemo
+tags:
+  - markdown
+categories:
+  - cheat sheets
+date: 2020-05-03 16:10:15
+---
+
+
 export default ({ children }) => (
   <div>
     <h1 style="text-align: center">My Layout</h1>
