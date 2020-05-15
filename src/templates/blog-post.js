@@ -1,26 +1,23 @@
 import React from "react"
 import {graphql} from "gatsby"
-import Layout from "../components/layout"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 
-export default function BlogPost({data}) {
-  const post = data.mdx
-  console.log(post)
+
+export default function BlogPost({data}){
+    console.log(data)
   return (
     <div>
-      <h1>hhh2221h</h1>
-      <h1>{post.frontmatter.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      <h1>test</h1>
     </div>
   )
+    // return( <MDXRenderer>{data}</MDXRenderer>)
 }
-export const query = graphql`
-  query($slug: String!) {
-    mdx(fields: { slug: { eq: $slug } }) {
-      html
-      excerpt
-      frontmatter {
-        title
-      }
-    }
-  }
-`
+//
+// export const pageQuery = graphql`
+//   query MDXQuery($id: String!) {
+//     mdx(id: { eq: $id }) {
+//       id
+//       body
+//     }
+//   }
+// `

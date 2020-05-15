@@ -37,13 +37,13 @@ console.log(bar(7)); // 返回 42
 
 
 
-## 队列（Callback Queue）
+## 队列CallbackQueue
 
 Web APIs 提供了setTimeout，DOM事件等api。
 
 在调用setTimeout时，浏览器会启用计时器，可以理解为这是浏览器做的；一旦计时器到期，将回调函数放入CallBack Queue中，并等待执行。Ajax，DOM事件等也在这里排队。
 
-## 事件循环（Event-Loop）
+## 事件循环Event-Loop
 
 ![](/images/javascript-event-loop.png)
 
