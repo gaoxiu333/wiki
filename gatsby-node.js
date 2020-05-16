@@ -5,7 +5,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
   if (node.internal.type === "Mdx") {
     const slug = createFilePath({ node, getNode, basePath: "pages" })
-    console.log(slug)
     createNodeField({
       name: "slug",
       node,
@@ -35,11 +34,11 @@ exports.createPages = async ({ graphql, actions }) => {
   result.data.allMdx.edges.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,
-      component:path.resolve(`./src/components/PostLayout/PostLayout.js`),
+      component: path.resolve(`./src/components/PostLayout/PostLayout.js`),
       context: {
         // Data passed to context is available
         // in page queries as GraphQL variables.
-        id:node.id
+        id: node.id
       }
     })
   })

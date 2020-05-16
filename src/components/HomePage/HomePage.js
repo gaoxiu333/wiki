@@ -49,7 +49,9 @@ const HomePage = () => {
                 <span style={{
                   fontSize: "12px",
                   color: "#686e6f"
-                }}>{node.frontmatter.date} · {node.fields.readingTime.text}</span>
+                }}>
+                  {node.frontmatter.date} · {node.fields.readingTime.text}
+                </span>
               </div>
               <div>
                 <InternalTags>

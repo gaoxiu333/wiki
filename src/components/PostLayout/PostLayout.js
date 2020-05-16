@@ -41,7 +41,6 @@ export default function PostLayout({ data }) {
             <MDXRenderer>{data.mdx.body}</MDXRenderer>
           </Article>
         </Wrapper>
-
       </MDXProvider>
     </Container>
   )
