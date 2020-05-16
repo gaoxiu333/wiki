@@ -6,6 +6,7 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 import Header from "../header"
 import Container from "../Container"
 import TagList from "./TagList"
+import InternalTags from "./InternalTags"
 
 
 const HomePage = () => {
@@ -18,9 +19,14 @@ const HomePage = () => {
             excerpt
             frontmatter {
               title
+              date(formatString: "YYYY/MM/DD")
+              tags
             }
             fields{
               slug
+              readingTime{
+                text
+               }
             }
           }
         }
@@ -31,11 +37,26 @@ const HomePage = () => {
     <Container>
       <Header/>
       <Main>
-        <section style={{flex:1}}>
+        <section style={{ flex: 1 }}>
           {data.allMdx.edges.map(({ node }) => (
-            <div key={node.id}>
-              <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
-            </div>
+            <List key={node.id}>
+              <div>
+                <h3 style={{ marginBottom: "8px",marginTop:'0' }}>
+                  <Link to={node.fields.slug}>
+                    {node.frontmatter.title}
+                  </Link>
+                </h3>
+                <span style={{
+                  fontSize: "12px",
+                  color: "#686e6f"
+                }}>{node.frontmatter.date} · {node.fields.readingTime.text}</span>
+              </div>
+              <div>
+                <InternalTags>
+                  {node.frontmatter.tags}
+                </InternalTags>
+              </div>
+            </List>
           ))}
         </section>
         <Aside>
@@ -46,6 +67,13 @@ const HomePage = () => {
     </Container>
   )
 }
+
+const List = styled.div`
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
 
 const Main = styled.main`
   display: flex;

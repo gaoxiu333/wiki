@@ -15,6 +15,7 @@ module.exports = {
         // }
       }
     },
+    'gatsby-remark-reading-time',
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
