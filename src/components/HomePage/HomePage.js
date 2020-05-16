@@ -31,11 +31,10 @@ const HomePage = () => {
     <Container>
       <Header/>
       <Main>
-        <section>
+        <section style={{flex:1}}>
           {data.allMdx.edges.map(({ node }) => (
             <div key={node.id}>
               <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
-              <p>{node.excerpt}</p>
             </div>
           ))}
         </section>
@@ -52,8 +51,8 @@ const Main = styled.main`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-width: 686px;
-  flex: 1;
+  min-width: 686px;  
+  margin-top: 80px;
 `
 const Aside = styled.aside`
   width: 350px;
