@@ -13,18 +13,11 @@ const TableOfContents = ({ headings }) => {
     id: slugify(h.value),
   }));
   const activeHeadingId = useActiveHeading(headingsWithIds);
-  console.log('activeHeadingId',activeHeadingId)
   return (
     <Wrapper>
       <TocHeading forwardedAs="h2" type="section-title">
-        Table of Contents
+        目录
       </TocHeading>
-      <ContentLinkHeading
-        href="#"
-        style={getStylesForDepth(1, !activeHeadingId)}
-      >
-        Introduction
-      </ContentLinkHeading>
       {headingsWithIds.map((heading, index) => (
         <ContentLinkHeading
           key={index}

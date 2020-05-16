@@ -5,17 +5,14 @@ import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { MDXProvider } from "@mdx-js/react"
 import TableOfContents from "../TableOfContents"
-import CodeBlock from "../code-block"
+import CodeBlock from "./code-block"
 import styled from "@emotion/styled"
+import "katex/dist/katex.min.css"
+
 
 const Heading = {
   H1: props => <h1 style={{ color: "red" }} {...props} />,
-  H2: props => {
-    const { children } = props
-    return (
-      <h2><a id={children} name={children} href={`#${children}`}> </a>{children}</h2>
-    )
-  },
+  H2: ({children}) => (<h2><a id={children} name={children} href={`#${children}`}> </a>{children}</h2>),
   H3: props => <h3 style={{ color: "red" }} {...props} />
 }
 
@@ -53,6 +50,7 @@ const Wrapper = styled.main`
   align-items: flex-start;
   position: relative;
   width: 100%;
+  margin-top: 80px;
 `
 const Article = styled.article`
   min-width: 686px;

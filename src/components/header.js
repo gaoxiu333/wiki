@@ -4,6 +4,7 @@ import React from "react"
 import styled from "@emotion/styled"
 import { READING_WIDTH } from "../constants"
 import { keyframes } from "@emotion/core"
+require(`katex/dist/katex.min.css`)
 
 
 const Header = ({ siteTitle }) => (
@@ -70,7 +71,6 @@ const InterText = styled.span`
     background-clip: text;
     background-size: 300% 300%;
     -webkit-text-fill-color: transparent;
-
 `
 
 
