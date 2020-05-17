@@ -1,9 +1,8 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
-import styled from "@emotion/styled"
+import styled,{keyframes} from "styled-components"
 import { READING_WIDTH } from "../constants"
-import { keyframes } from "@emotion/core"
 require(`katex/dist/katex.min.css`)
 
 

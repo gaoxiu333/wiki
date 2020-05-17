@@ -6,7 +6,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import { MDXProvider } from "@mdx-js/react"
 import TableOfContents from "../TableOfContents"
 import CodeBlock from "./CodeBlock"
-import styled from "@emotion/styled"
+import styled from "styled-components"
 import "katex/dist/katex.min.css"
 
 

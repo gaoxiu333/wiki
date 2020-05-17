@@ -6,3 +6,58 @@ categories:
   - '学习笔记'
 date: 2020-05-17 22:11:09
 ---
+
+## 样式
+
+创建全局css文件
+```
+// src/styles/global.css
+html{
+}
+//...
+```
+将全局css导入gatsby-browser.gatsbyjs
+```
+import './src/styles/global.css'
+```
+**注意** 使用 CSS-in-JS 时，这种方式不推荐。
+
+### styled components
+css-in-Js的变体
+依赖:
+-   gatsby-plugin-styled-components
+-   styled-components
+-   babel-plugin-styled-components
+
+配置
+```js
+// gatsby-config.js
+module.exports = {
+  plugins: [
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        // Add any options here
+      },
+    },
+  ],
+}
+```
+创建全局样式
+使用 createGlobalStyle完成
+```
+import React from "react"
+import { createGlobalStyle } from "styled-components"
+const GlobalStyle = createGlobalStyle`
+  body {
+    color: ${props => (props.theme === "purple" ? "purple" : "white")};
+  }
+`
+export default function Layout({ children }) {
+  return (
+    <React.Fragment>
+      <GlobalStyle theme="purple" />
+    </React.Fragment>
+  )
+}
+```

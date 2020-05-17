@@ -2,7 +2,7 @@ import React from "react"
 import Highlight, { defaultProps } from "prism-react-renderer"
 import { syntaxTheme } from "../../styles/theme/code"
 import { LiveProvider, LiveEditor, LivePreview } from "react-live"
-import styled from "@emotion/styled"
+import styled from "styled-components"
 
 
 const CodeBlock = ({ children, className, live }) => {

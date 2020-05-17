@@ -1,5 +1,5 @@
 
-import styled from "@emotion/styled"
+import styled from "styled-components"
 import {BREAKPOINTS,READING_WIDTH} from "../../constants"
 
 const Container = styled.div`

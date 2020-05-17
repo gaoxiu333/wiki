@@ -5,7 +5,7 @@ module.exports = {
     author: `@gao`,
   },
   plugins: [
-    `gatsby-plugin-emotion`,// css-in-js
+    `gatsby-plugin-styled-components`,// css-in-js
     `gatsby-remark-katex`,
     { // mdx插件，兼容md和mdx格式文件
       resolve: `gatsby-plugin-mdx`,
