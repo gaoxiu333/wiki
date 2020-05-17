@@ -34,7 +34,7 @@ const CodeBlock = ({ children, className, live }) => {
     )
   }
   return (
-    <Highlight {...defaultProps} theme={syntaxTheme} code={children} language={language}>
+    <Highlight {...defaultProps} theme={syntaxTheme} code={children.trim()} language={language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Pre className={className} style={{ ...style }}>
           {tokens.map((line, i) => (
