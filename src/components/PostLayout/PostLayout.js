@@ -11,9 +11,9 @@ import "katex/dist/katex.min.css"
 
 
 const Heading = {
-  H1: props => <h1 style={{ color: "red" }} {...props} />,
-  H2: ({children}) => (<h2><a id={children} name={children} href={`#${children}`}> </a>{children}</h2>),
-  H3: props => <h3 style={{ color: "red" }} {...props} />
+  H1: ({ children }) => (<h1><a id={children} name={children} href={`#${children}`}> </a>{children}</h1>),
+  H2: ({ children }) => (<h2><a id={children} name={children} href={`#${children}`}> </a>{children}</h2>),
+  H3: ({ children }) => (<h3><a id={children} name={children} href={`#${children}`}> </a>{children}</h3>)
 }
 
 const components = {

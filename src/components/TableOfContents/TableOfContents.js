@@ -1,48 +1,49 @@
-import React from 'react';
-import styled from '@emotion/styled';
+import React from "react"
+import styled from "@emotion/styled"
 
-import { slugify, throttle } from '../../utils';
+import { slugify, throttle } from "../../utils"
 
-import Heading from '../Heading';
+import Heading from "../Heading"
 
 const TableOfContents = ({ headings }) => {
-  const largeEnoughHeadings = headings.filter(h => h.depth <= 2);
-  console.log('largeEnoughHeadings',largeEnoughHeadings)
+  const largeEnoughHeadings = headings.filter(h => h.depth <= 2)
   const headingsWithIds = largeEnoughHeadings.map(h => ({
     ...h,
-    id: slugify(h.value),
-  }));
-  const activeHeadingId = useActiveHeading(headingsWithIds);
+    id: slugify(h.value)
+  }))
+  const activeHeadingId = useActiveHeading(headingsWithIds)
   return (
-    <Wrapper>
-      <TocHeading forwardedAs="h2" type="section-title">
-        目录
-      </TocHeading>
-      {headingsWithIds.map((heading, index) => (
-        <ContentLinkHeading
-          key={index}
-          href={`#${slugify(heading.value)}`}
-          style={getStylesForDepth(
-            heading.depth,
-            activeHeadingId === heading.value
-          )}
-        >
-          {heading.value}
-        </ContentLinkHeading>
-      ))}
-    </Wrapper>
-  );
-};
+    headingsWithIds.length < 1
+      ? ""
+      : <Wrapper>
+        <TocHeading forwardedAs="h2" type="section-title">
+          目录
+        </TocHeading>
+        {headingsWithIds.map((heading, index) => (
+          <ContentLinkHeading
+            key={index}
+            href={`#${slugify(heading.value)}`}
+            style={getStylesForDepth(
+              heading.depth,
+              activeHeadingId === heading.value
+            )}
+          >
+            {heading.value}
+          </ContentLinkHeading>
+        ))}
+      </Wrapper>
+  )
+}
 
 const useActiveHeading = headings => {
-  const [activeHeadingId, setActiveHeading] = React.useState(null);
+  const [activeHeadingId, setActiveHeading] = React.useState(null)
   React.useEffect(() => {
     const handleScroll = throttle(() => {
       // If we're all the way at the top, there is no active heading.
       // This is done because "Introduction", the first link in the TOC, will
       // be active if `heading` is `null`.
       if (window.pageYOffset === 0) {
-        return setActiveHeading(null);
+        return setActiveHeading(null)
       }
 
       // There HAS to be a better single-step algorithm for this, but I can't
@@ -58,88 +59,88 @@ const useActiveHeading = headings => {
       // although this would have to be a VERY long intro to ever be true.
 
       let headingBoxes = headings.map(({ value }) => {
-        console.log('value',value)
-        const elem = document.querySelector(`#${value}`);
-        return { id:value, box: elem.getBoundingClientRect() };
-      });
+        console.log("value", value)
+        const elem = document.querySelector(`#${value}`)
+        return { id: value, box: elem.getBoundingClientRect() }
+      })
 
       // The first heading within the viewport is the one we want to highlight.
       // Because our heading obscures the top ~100px of the window, I'm
       // considering that range out-of-viewport.
-      const TOP_OFFSET = 120;
+      const TOP_OFFSET = 120
       let firstHeadingInViewport = headingBoxes.find(({ box }) => {
-        return box.bottom > TOP_OFFSET && box.top < window.innerHeight;
-      });
+        return box.bottom > TOP_OFFSET && box.top < window.innerHeight
+      })
 
       // If there is no heading in the viewport, check and see if there are any
       // above the viewport.
       if (!firstHeadingInViewport) {
-        const reversedBoxes = [...headingBoxes].reverse();
+        const reversedBoxes = [...headingBoxes].reverse()
 
         firstHeadingInViewport = reversedBoxes.find(({ box }) => {
-          return box.bottom < TOP_OFFSET;
-        });
+          return box.bottom < TOP_OFFSET
+        })
       }
 
       if (!firstHeadingInViewport) {
-        setActiveHeading(null);
+        setActiveHeading(null)
       } else if (firstHeadingInViewport.id !== activeHeadingId) {
-        setActiveHeading(firstHeadingInViewport.id);
+        setActiveHeading(firstHeadingInViewport.id)
       }
-    }, 500);
+    }, 500)
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll)
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [activeHeadingId, headings]);
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [activeHeadingId, headings])
 
-  return activeHeadingId;
-};
+  return activeHeadingId
+}
 
 const getStylesForDepth = (depth, isActiveHeading) => {
   const base = {
-    color: isActiveHeading ? 'red' : undefined,
-  };
+    color: isActiveHeading ? "red" : undefined
+  }
 
   switch (depth) {
     case 1:
       return {
         ...base,
         marginTop: 10,
-        fontSize: 15,
-      };
+        fontSize: 15
+      }
 
     case 2:
       return {
         ...base,
         marginTop: 3,
         fontSize: 14,
-        paddingLeft: 12,
-      };
+        paddingLeft: 12
+      }
 
     case 3:
       return {
         ...base,
         marginTop: 3,
         fontSize: 12,
-        paddingLeft: 24,
-      };
+        paddingLeft: 24
+      }
 
     default:
-      throw new Error('Unsupported heading size: ' + depth);
+      throw new Error("Unsupported heading size: " + depth)
   }
-};
+}
 
 const Wrapper = styled.div`
   margin-bottom: 32px;
-`;
+`
 
 const TocHeading = styled(Heading)`
   color: var(--color-gray-900);
   margin-bottom: 16px;
-`;
+`
 
 const ContentLinkHeading = styled.a`
   display: block;
@@ -153,6 +154,6 @@ const ContentLinkHeading = styled.a`
     opacity: 1;
     transition: opacity 0ms;
   }
-`;
+`
 
-export default TableOfContents;
+export default TableOfContents
