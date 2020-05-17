@@ -1,0 +1,263 @@
+---
+title: styled-components 使用
+tags:
+  - React
+categories:
+  - 学习
+date: 2020-05-18 00:58:32
+---
+
+## 介绍
+有很多css-in-JS实现方式，`styled-components`是react中css-in-JS一种实现方式，很符合react的组件化思想；参考 [css-in-JS](https://github.com/MicheleBertoli/css-in-js)。
+
+## 安装
+```
+npm install --save styled-components
+```
+
+## 基本使用
+```jsx
+import styled from 'styled-components'
+
+const Wrapper = styled.section``
+// styled其实是一个辅助函数 另一种写法为 styled('div')``
+// 或者对象方式 styled.div({color:props.color})
+// styled.div(props => ({color:props.color}))
+const Example = styled.div`
+  padding: 2em 1em;
+  background: papayawhip;
+
+  &:hover {
+    background: palevioletred;
+  }
+  // 父组件为 styled-components 时
+  ${Wrapper} &{
+    color:blue;
+  }
+
+  @media (max-width: 600px) {
+    background: tomato;
+    &:hover {
+      background: yellow;
+    }
+  }
+
+  > p {
+    text-decoration: underline;
+  }
+
+  html.test & {
+    display: none;
+  }
+
+  &.something{
+    color:blue;
+  }
+
+  .something{
+    color:blue;
+  }
+
+  .something &{
+    color:green;
+  }
+`;
+
+render(
+    <Wrapper>
+      <Example className='something'>
+        <p>Hello World!</p>
+      </Example>
+    </Wrapper>
+);
+```
+
+### 传递参数
+```jsx
+const Button = styled.button`
+  background: ${props => props.primary ? "palevioletred" : "white"};
+`;
+render(
+  <div>
+    <Button>Normal</Button>
+    <Button primary>Primary</Button>
+  </div>
+);
+```
+
+### 新增样式
+```jsx
+const Button = styled.button`
+  color: palevioletred;
+  border: 2px solid palevioletred;
+`;
+
+const TomatoButton = styled(Button)`
+  color: tomato;
+  border-color: tomato;
+  border-radius: 3px;
+`;
+
+render(
+  <div>
+    <Button>Normal Button</Button>
+    <TomatoButton>Tomato Button</TomatoButton>
+  </div>
+);
+```
+### 使用外部css
+```jsx
+import React from 'react'
+import styles from './styles.css'
+
+export default class Counter extends React.Component {
+  render() {
+    return <div className={styles.someClass} />
+  }
+}
+```
+
+### 元素属性
+```jsx
+const Input = styled.input.attrs(props => ({
+  type: "password",
+  size: props.size || "1em",
+}))`
+  color: palevioletred;
+  margin: ${props => props.size};
+  padding: ${props => props.size};
+`;
+
+render(
+  <div>
+    <Input placeholder="A small text input" />
+    <br />
+    <Input placeholder="A bigger text input" size="2em" />
+  </div>
+);
+```
+### 主题化
+
+### 基本使用
+使用 `ThemeProvider` 包装组件，该组件可以通过React组件树的上线文，为所有子组件提供主题变量。
+```jsx
+import styled,{ThemeProvider} from 'styled-components'
+
+const Button = styled.button`
+  color: ${props => props.theme.main};
+  border: 2px solid ${props => props.theme.main};
+`;
+
+Button.defaultProps = {
+  theme: {
+    main: "palevioletred"
+  }
+}
+
+const theme = {
+  main: "mediumseagreen"
+};
+
+render(
+  <div>
+    <Button>Normal</Button>
+    <ThemeProvider theme={theme}>
+      <Button>Themed</Button>
+    </ThemeProvider>
+  </div>
+);
+```
+
+### 拓展
+`ThemeProvider`的them不仅接受对象，也可以接受一个`function`；这个`function`可以接受父`ThemeProvider`组件传递的them值。
+一个背景色和前景色反转的例子：
+```jsx
+const Button = styled.button`
+  color: ${props => props.theme.fg};
+  background: ${props => props.theme.bg};
+`;
+const theme = {
+  fg: "palevioletred",
+  bg: "white"
+};
+const invertTheme = ({ fg, bg }) => ({
+  fg: bg,
+  bg: fg
+});
+render(
+  <ThemeProvider theme={theme}>
+    <div>
+      <Button>Default Theme</Button>
+      <ThemeProvider theme={invertTheme}>
+        <Button>Inverted Theme</Button>
+      </ThemeProvider>
+    </div>
+  </ThemeProvider>
+);
+```
+
+
+## 常用的helper函数
+
+### createGlobalStyle
+用来生成全局css，可以用来写基本样式；应该放在React树顶部，在React渲染组件时注入全局样式。
+```jsx
+import { createGlobalStyle } from 'styled-components'
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    color: ${props => (props.whiteColor ? 'white' : 'black')};
+  }
+`
+
+<React.Fragment>
+  <GlobalStyle whiteColor />
+  <Navigation /> {/* example of other top-level stuff */}
+</React.Fragment>
+```
+
+### css
+
+用于编写内联css样式
+
+```jsx
+import styled, { css } from 'styled-components'
+
+const complexMixin = css`
+  color: ${props => (props.whiteColor ? 'white' : 'black')};
+`
+
+const StyledComp = styled.div`
+  /* This is an example of a nested interpolation */
+  ${props => (props.complex ? complexMixin : 'color: blue;')};
+`
+```
+### keyframes
+
+用于创建`animations`的`keyframes`辅助方法
+```jsx
+import styled, { keyframes } from 'styled-components'
+
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`
+
+const FadeInButton = styled.button`
+  animation: 1s ${fadeIn} ease-out;
+`
+```
+
+## 编辑器语法高亮
+
+Visual Studio Code：[插件](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)
+
+WebStorm：[插件安装方法](https://github.com/styled-components/webstorm-styled-components)
+
+
+
+
