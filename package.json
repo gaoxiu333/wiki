@@ -35,6 +35,7 @@
     "typography-theme-fairy-gates": "^0.16.19"
   },
   "devDependencies": {
+    "dayjs": "^1.8.27",
     "prettier": "2.0.5"
   },
   "keywords": [
@@ -48,6 +49,7 @@
     "start": "npm run develop",
     "serve": "npx gatsby serve",
     "clean": "npx gatsby clean",
+    "new": "node createPost.js",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "repository": {
