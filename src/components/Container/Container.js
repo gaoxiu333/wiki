@@ -6,6 +6,7 @@ import { ThemeContext, themes } from "../them-context"
 const GlobalStyle = createGlobalStyle`
   body{
       background: ${props => props.theme.background};
+      color: ${props => props.theme.color};
   }
 `
 
@@ -29,7 +30,7 @@ const Container = (props) => {
   }
 
   return (
-    <ThemeProvider theme={themes[mode]}>\
+    <ThemeProvider theme={themes[mode]}>
       <ThemeContext.Provider value={{ themes: themes[mode], toggleThemes: handleClick }}>
         <Main themes={themes[mode]}>{props.children}</Main>
       </ThemeContext.Provider>
