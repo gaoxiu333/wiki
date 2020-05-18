@@ -30,7 +30,6 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
-  console.log(JSON.stringify(result, null, 4))
   result.data.allMdx.edges.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,
