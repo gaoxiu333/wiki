@@ -9,7 +9,7 @@
  */
 
 html {
-    line-height: 1.15; /* 1 */
+    line-height: 1.5; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
 }
 
@@ -354,4 +354,39 @@ template {
 
 a{
     text-decoration: none;
+}
+
+
+body{
+    font-family: /* font stack (normal) */
+            'Latin Modern Roman', 'FreeSerif', serif,
+            'HanaMinA', 'Adobe Song Std', 'Source Han Sans',
+            'WenQuanYi Micro Hei', 'WenQuanYi Zen Hei',
+            'Meiryo', 'Microsoft JhengHei', 'Microsoft YaHei';
+    font-size: 16px;
+    cursor: default;
+}
+
+::selection {
+    background-color: gainsboro;
+}
+
+article{
+    font-size: 1em;
+}
+
+code, kbd,pre {
+    font-family: /* font stack (monospaced) */
+            'Latin Modern Mono', 'FreeMono', monospace;
+    /*box-shadow: 2px 2px 2px dimgray;*/
+
+
+}
+
+/*引用的格式不太符合当前的主题*/
+blockquote {
+    background: gainsboro;
+    border-radius: 1em;
+    padding: .25em 1em;
+    font-size: .8em;
 }

@@ -21,7 +21,7 @@ const Main = styled.main`
 `
 
 const Container = (props) => {
-  const [mode, setMode] = useState("dark")
+  const [mode, setMode] = useState("light")
 
   function handleClick() {
     console.log(mode, themes[mode])
