@@ -24,6 +24,7 @@ const Main = styled.main`
   margin-right:auto;
   padding-left:32px;
   padding-right:32px;
+  padding-bottom: 120px;
 `
 
 const Container = (props) => {

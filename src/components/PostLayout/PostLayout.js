@@ -9,7 +9,7 @@ import CodeBlock from "./CodeBlock"
 import styled from "styled-components"
 import "katex/dist/katex.min.css"
 import { formatTitle } from "../../utils"
-
+import Title from './Title'
 let formatAllTitle = function() {
 
 }
@@ -42,6 +42,7 @@ export default function PostLayout({ data }) {
     <Container>
       <MDXProvider components={components}>
         <Header/>
+        <Title mdx={data.mdx}/>
         <Wrapper>
           <Aside>
             <TableOfContents headings={data.mdx.headings}/>
@@ -62,7 +63,6 @@ const Wrapper = styled.main`
   align-items: flex-start;
   position: relative;
   width: 100%;
-  margin-top: 80px;
 `
 const Article = styled.article`
   min-width: 686px;
@@ -82,6 +82,18 @@ export const pageQuery = graphql`
     mdx(id: { eq: $id }) {
       id
       body
+      fields {
+        readingTime {
+          text
+          time
+          words
+        }
+      }
+      frontmatter {
+        title
+        tags
+        date(formatString: "YYYY/MM/DD")
+      }
       headings {
         depth
         value

@@ -14,12 +14,11 @@ const TagList = () => {
       }
      }
   `)
-  console.log("data", data)
   const groups = data.allMdx.group
   return (
     <div>
       {groups.map(({ fieldValue }) =>
-        <InternalLink key={fieldValue}>{fieldValue}</InternalLink>
+        fieldValue ? <InternalLink key={fieldValue}>{fieldValue}</InternalLink>:''
       )}
     </div>
   )

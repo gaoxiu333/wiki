@@ -41,7 +41,7 @@ const HomePage = () => {
           {data.allMdx.edges.map(({ node }) => (
             <List key={node.id}>
               <div>
-                <h3 style={{ marginBottom: "8px",marginTop:'0' }}>
+                <h3 style={{ marginBottom: "8px", marginTop: "0" }}>
                   <Link to={node.fields.slug}>
                     {node.frontmatter.title}
                   </Link>
@@ -54,9 +54,9 @@ const HomePage = () => {
                 </span>
               </div>
               <div>
-                <InternalTags>
-                  {node.frontmatter.tags}
-                </InternalTags>
+                {Boolean(node.frontmatter.tags.toString().trim())
+                  ? <InternalTags>{node.frontmatter.tags}</InternalTags>
+                  : ''}
               </div>
             </List>
           ))}
