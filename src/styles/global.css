@@ -395,3 +395,7 @@ code, kbd,pre {
 /*}*/
 
 /*动画*/
+
+#gatsby-plugin-page-progress{
+    background: linear-gradient(90deg, #ffcd00, #59b287, #59b287, #4c5faa, #f9423a);
+}

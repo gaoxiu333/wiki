@@ -42,6 +42,16 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-plugin-page-progress",
+      options: {
+        includePaths: [],
+        excludePaths: [],
+        height: 2,
+        prependToBody: false,
+        color: `linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c)`
+      }
+    },
+    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: "UA-167029866-1",
