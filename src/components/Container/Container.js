@@ -8,6 +8,12 @@ const GlobalStyle = createGlobalStyle`
       background: ${props => props.theme.background};
       color: ${props => props.theme.color};
   }
+  a{
+    color: ${props => props.theme.linkColor};
+    &:hover{
+        color: ${props => props.theme.hoverColor};
+    }
+  }
 `
 
 
@@ -24,8 +30,6 @@ const Container = (props) => {
   const [mode, setMode] = useState("light")
 
   function handleClick() {
-    console.log(mode, themes[mode])
-
     setMode(mode => mode === "dark" ? "light" : "dark")
   }
 
