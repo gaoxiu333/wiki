@@ -31,7 +31,7 @@ const Container = (props) => {
 
   return (
     <ThemeProvider theme={themes[mode]}>
-      <ThemeContext.Provider value={{ themes: themes[mode], toggleThemes: handleClick }}>
+      <ThemeContext.Provider value={{ themes: themes[mode], toggleThemes: handleClick, mode: mode }}>
         <Main themes={themes[mode]}>{props.children}</Main>
       </ThemeContext.Provider>
       <GlobalStyle/>

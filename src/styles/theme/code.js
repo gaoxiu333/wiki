@@ -21,7 +21,6 @@ export const syntaxTheme = {
     },
     {
       types: ['attr-name', 'tag'],
-      style: { fontWeight: '700' },
     },
     {
       types: ['string', 'attr-value'],
@@ -70,9 +69,6 @@ export const syntaxTheme = {
     },
     {
       types: ['important', 'bold'],
-      style: {
-        fontWeight: 'bold',
-      },
     },
     {
       types: ['regex', 'important'],
@@ -94,9 +90,6 @@ export const syntaxTheme = {
     },
     {
       types: ['string', 'comment'],
-      style: {
-        fontWeight: 500,
-      },
     },
   ],
 };

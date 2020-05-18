@@ -1,16 +1,22 @@
-import React from "react"
+import React, { useContext } from "react"
 import Highlight, { defaultProps } from "prism-react-renderer"
-import { syntaxTheme } from "../../styles/theme/code"
+import { syntaxTheme as light } from "../../styles/theme/code"
 import { LiveProvider, LiveEditor, LivePreview } from "react-live"
 import styled from "styled-components"
+import dark from "prism-react-renderer/themes/oceanicNext"
+import { ThemeContext } from "../them-context"
+
+const codeTheme = { light, dark }
 
 
 const CodeBlock = ({ children, className, live }) => {
+  const { mode } = useContext(ThemeContext)
+  console.log('------=-mode',mode)
   const language = className ? className.replace(/language-/, "") : "sh"
   if (live) {
     return (
       <div style={{ marginTop: "40px" }}>
-        <LiveProvider code={children} theme={Object.assign({}, syntaxTheme, {
+        <LiveProvider code={children} theme={Object.assign({}, codeTheme[mode], {
           plain: {
             color: "#2A2A2A",
             backgroundColor: "#F6F6F6",
@@ -34,7 +40,7 @@ const CodeBlock = ({ children, className, live }) => {
     )
   }
   return (
-    <Highlight {...defaultProps} theme={syntaxTheme} code={children.trim()} language={language}>
+    <Highlight {...defaultProps} theme={codeTheme[mode]} code={children.trim()} language={language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Pre className={className} style={{ ...style }}>
           {tokens.map((line, i) => (
