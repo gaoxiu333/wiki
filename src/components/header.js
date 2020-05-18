@@ -45,10 +45,10 @@ const Wrapper = styled.header`
   align-items: center;
 `
 const Col = styled.div`
-  padding: 10px;
+  padding: 0;
 `
 const ColInline = styled.span`
-  margin-right: 20px;
+  margin-left: 20px;
   cursor: pointer;
 `
 

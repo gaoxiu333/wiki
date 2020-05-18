@@ -1,7 +1,7 @@
 export const formatTitle = () => {
   let titles = {}
   return function(str = "") {
-    let slug = `_${str.replace(/\s/g, "-")}`
+    let slug = `_${str.toString().replace(/\s/g, "-")}`
     while (titles[slug]) {
       slug += "_"
     }

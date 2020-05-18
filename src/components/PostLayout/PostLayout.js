@@ -9,7 +9,9 @@ import CodeBlock from "./CodeBlock"
 import styled from "styled-components"
 import "katex/dist/katex.min.css"
 import { formatTitle } from "../../utils"
-import Title from './Title'
+import Title from "./Title"
+import { BREAKPOINTS } from "../../constants"
+
 let formatAllTitle = function() {
 
 }
@@ -59,22 +61,28 @@ export default function PostLayout({ data }) {
 const Wrapper = styled.main`
   display: flex;
   flex-direction: row-reverse;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   position: relative;
   width: 100%;
+  @media ${BREAKPOINTS.lg}{
+    justify-content: center;
+  }
 `
 const Article = styled.article`
-  min-width: 686px;
-  flex: 1 1;
+  width: 708px;
+  max-width: 100%;
 `
 const Aside = styled.aside`
-  width: 350px;
-  padding-left: 128px;
+  width: 230px;
+  padding-left: 20px;
   position: sticky;
   top: 80px;
   max-height: calc(100vh - 120px);
   overflow: auto;
+  @media ${BREAKPOINTS.lg}{
+    display: none;
+  }
 `
 
 export const pageQuery = graphql`

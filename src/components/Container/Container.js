@@ -25,6 +25,11 @@ const Main = styled.main`
   padding-left:32px;
   padding-right:32px;
   padding-bottom: 120px;
+  @media ${BREAKPOINTS.sm} {
+    padding-left:16px;
+    padding-right:16px
+  }
+  
 `
 
 const Container = (props) => {

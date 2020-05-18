@@ -7,6 +7,7 @@ import Header from "../header"
 import Container from "../Container"
 import TagList from "./TagList"
 import InternalTags from "./InternalTags"
+import {BREAKPOINTS} from '../../constants'
 
 
 const HomePage = () => {
@@ -37,7 +38,7 @@ const HomePage = () => {
     <Container>
       <Header/>
       <Main>
-        <section style={{ flex: 1 }}>
+        <Wrapper>
           {data.allMdx.edges.map(({ node }) => (
             <List key={node.id}>
               <div>
@@ -60,7 +61,7 @@ const HomePage = () => {
               </div>
             </List>
           ))}
-        </section>
+        </Wrapper>
         <Aside>
           <h2>标签</h2>
           <TagList/>
@@ -72,6 +73,8 @@ const HomePage = () => {
 
 const List = styled.div`
   padding: 16px 0;
+  width: 708px;
+  max-width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -79,14 +82,28 @@ const List = styled.div`
 
 const Main = styled.main`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
-  min-width: 686px;  
   margin-top: 80px;
+  @media ${BREAKPOINTS.lg}{
+    justify-content: center;
+  }
 `
 const Aside = styled.aside`
-  width: 350px;
-  padding-left: 128px;
+  width: 280px;
+  padding-left: 20px;
+  position: sticky;
+  top: 80px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  @media ${BREAKPOINTS.lg}{
+    display: none;
+  }
+`
+const Wrapper = styled.section`
+  //flex: 1;
+  width: 708px;
+  max-width: 100%;
 `
 export default HomePage
 

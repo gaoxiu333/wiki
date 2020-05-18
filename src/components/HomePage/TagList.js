@@ -16,13 +16,23 @@ const TagList = () => {
   `)
   const groups = data.allMdx.group
   return (
-    <div>
+    <Tag>
       {groups.map(({ fieldValue }) =>
         fieldValue ? <InternalLink key={fieldValue}>{fieldValue}</InternalLink>:''
       )}
-    </div>
+    </Tag>
   )
 }
+
+const Tag = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  a{
+    display: inline-block;
+  }
+
+`
 
 const InternalLink = styled.a`
   color: hsl(225deg, 15%, 15%);
@@ -32,7 +42,7 @@ const InternalLink = styled.a`
   margin-right: 8px;
   margin-bottom: 9px;
   text-decoration: none;
-  padding: 3px 12px;
+  padding: 3px 8px;
   border-radius: 8px;
 `
 

@@ -387,11 +387,11 @@ code, kbd,pre {
 }
 
 /*引用的格式不太符合当前的主题*/
-blockquote {
-    background: gainsboro;
-    border-radius: 1em;
-    padding: .25em 1em;
-    font-size: .8em;
-}
+/*blockquote {*/
+/*    background: gainsboro;*/
+/*    border-radius: 1em;*/
+/*    padding: .25em 1em;*/
+/*    font-size: .8em;*/
+/*}*/
 
 /*动画*/
