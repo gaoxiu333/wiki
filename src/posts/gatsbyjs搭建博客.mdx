@@ -9,27 +9,32 @@ date: 2020-05-17 22:11:09
 
 ## 样式
 
-创建全局css文件
-```
+### 全局css文件
+用来初始化css,例如 Normalize.css 或者 reset css
+1. 创建全局css文件
+```less
 // src/styles/global.css
+
 html{
+// some styles
 }
-//...
+
+//  more ...
 ```
-将全局css导入gatsby-browser.gatsbyjs
-```
+2. 将全局css导入gatsby-browser.js
+```js
 import './src/styles/global.css'
+// require('./src/styles/global.css')
 ```
-**注意** 使用 CSS-in-JS 时，这种方式不推荐。
 
-### styled components
-css-in-Js的变体
-依赖:
--   gatsby-plugin-styled-components
--   styled-components
--   babel-plugin-styled-components
+### gatsby 中使用 styled-components
 
-配置
+依赖：
+```bash
+npm i --save gatsby-plugin-styled-components styled-components babel-plugin-styled-components
+```
+
+配置`gatsby-config.js`文件：
 ```js
 // gatsby-config.js
 module.exports = {
@@ -41,23 +46,5 @@ module.exports = {
       },
     },
   ],
-}
-```
-创建全局样式
-使用 createGlobalStyle完成
-```
-import React from "react"
-import { createGlobalStyle } from "styled-components"
-const GlobalStyle = createGlobalStyle`
-  body {
-    color: ${props => (props.theme === "purple" ? "purple" : "white")};
-  }
-`
-export default function Layout({ children }) {
-  return (
-    <React.Fragment>
-      <GlobalStyle theme="purple" />
-    </React.Fragment>
-  )
 }
 ```
