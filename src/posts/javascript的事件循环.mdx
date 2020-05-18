@@ -1,10 +1,10 @@
 ---
-title: 事件循环
+title: JavaScript的事件循环
 tags:
-  - JavaScript
+  - javascript
 categories:
-  - cheat sheets
-date: 2020-05-03 16:10:15
+  - javascript
+date: 2020-04-29 15:19:18
 ---
 
 ## 介绍
@@ -44,13 +44,13 @@ console.log(bar(7)); // 返回 42
 
 
 
-## 队列CallbackQueue
+## 队列（Callback Queue）
 
 Web APIs 提供了setTimeout，DOM事件等api。
 
 在调用setTimeout时，浏览器会启用计时器，可以理解为这是浏览器做的；一旦计时器到期，将回调函数放入CallBack Queue中，并等待执行。Ajax，DOM事件等也在这里排队。
 
-## 事件循环Event-Loop
+## 事件循环（Event-Loop）
 
 ![](/images/javascript-event-loop.png)
 
