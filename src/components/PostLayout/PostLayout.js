@@ -10,7 +10,9 @@ import styled from "styled-components"
 import "katex/dist/katex.min.css"
 import { formatTitle } from "../../utils"
 
-const formatAllTitle = formatTitle()
+let formatAllTitle = function() {
+
+}
 
 const Heading = {
   H1: ({ children }) => {
@@ -35,6 +37,7 @@ const components = {
   h3: Heading.H3
 }
 export default function PostLayout({ data }) {
+  formatAllTitle = formatTitle()
   return (
     <Container>
       <MDXProvider components={components}>
