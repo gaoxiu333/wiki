@@ -11,7 +11,6 @@ const codeTheme = { light, dark }
 
 const CodeBlock = ({ children, className, live }) => {
   const { mode } = useContext(ThemeContext)
-  console.log('------=-mode',mode)
   const language = className ? className.replace(/language-/, "") : "sh"
   if (live) {
     return (

@@ -365,6 +365,8 @@ body{
             'Meiryo', 'Microsoft JhengHei', 'Microsoft YaHei';
     font-size: 16px;
     cursor: default;
+    transition:background-color 1s,color 0.1s;
+
 }
 
 ::selection {
@@ -376,6 +378,7 @@ article{
 }
 
 code, kbd,pre {
+    transition:background-color 1s,color 0.1s;
     font-family: /* font stack (monospaced) */
             'Latin Modern Mono', 'FreeMono', monospace;
     /*box-shadow: 2px 2px 2px dimgray;*/
@@ -390,3 +393,5 @@ blockquote {
     padding: .25em 1em;
     font-size: .8em;
 }
+
+/*动画*/
