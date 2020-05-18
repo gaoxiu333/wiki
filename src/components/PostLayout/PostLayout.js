@@ -8,12 +8,23 @@ import TableOfContents from "../TableOfContents"
 import CodeBlock from "./CodeBlock"
 import styled from "styled-components"
 import "katex/dist/katex.min.css"
+import { formatTitle } from "../../utils"
 
+const formatAllTitle = formatTitle()
 
 const Heading = {
-  H1: ({ children }) => (<h1><a id={children} name={children} href={`#${children}`}> </a>{children}</h1>),
-  H2: ({ children }) => (<h2><a id={children} name={children} href={`#${children}`}> </a>{children}</h2>),
-  H3: ({ children }) => (<h3><a id={children} name={children} href={`#${children}`}> </a>{children}</h3>)
+  H1: ({ children }) => {
+    const title = formatAllTitle(children)
+    return <h1><a id={title} name={title} href={`#${title}`}> </a>{children}</h1>
+  },
+  H2: ({ children }) => {
+    const title = formatAllTitle(children)
+    return <h2><a id={title} name={title} href={`#${title}`}> </a>{children}</h2>
+  },
+  H3: ({ children }) => {
+    const title = formatAllTitle(children)
+    return <h3><a id={title} name={title} href={`#${title}`}> </a>{children}</h3>
+  }
 }
 
 const components = {
@@ -22,8 +33,6 @@ const components = {
   h1: Heading.H1,
   h2: Heading.H2,
   h3: Heading.H3
-
-
 }
 export default function PostLayout({ data }) {
   return (

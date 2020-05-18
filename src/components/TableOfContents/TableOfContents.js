@@ -1,15 +1,19 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 
-import { slugify, throttle } from "../../utils"
+import { formatTitle, throttle } from "../../utils"
 
 import Heading from "../Heading"
+import { ThemeContext } from "../them-context"
+
 
 const TableOfContents = ({ headings }) => {
-  const largeEnoughHeadings = headings.filter(h => h.depth <= 2)
+  const formatAllTitle = formatTitle()
+  const { themes } = useContext(ThemeContext)
+  const largeEnoughHeadings = headings.filter(h => h.depth <= 3)
   const headingsWithIds = largeEnoughHeadings.map(h => ({
     ...h,
-    id: slugify(h.value)
+    id: formatAllTitle(h.value)
   }))
   const activeHeadingId = useActiveHeading(headingsWithIds)
   return (
@@ -22,11 +26,12 @@ const TableOfContents = ({ headings }) => {
         {headingsWithIds.map((heading, index) => (
           <ContentLinkHeading
             key={index}
-            href={`#${slugify(heading.value)}`}
-            style={getStylesForDepth(
-              heading.depth,
-              activeHeadingId === heading.value
-            )}
+            href={`#${heading.id}`}
+            style={{
+              color: `${(heading.id === activeHeadingId) ? themes.hoverColor : ""}`,
+              paddingLeft:`${(heading.depth - 2) * 18}px`
+            }}
+
           >
             {heading.value}
           </ContentLinkHeading>
@@ -58,10 +63,9 @@ const useActiveHeading = headings => {
       // If neither condition is met, I'll assume I'm still in the intro,
       // although this would have to be a VERY long intro to ever be true.
 
-      let headingBoxes = headings.map(({ value }) => {
-        console.log("value", value)
-        const elem = document.querySelector(`#${value}`)
-        return { id: value, box: elem.getBoundingClientRect() }
+      let headingBoxes = headings.map(({ value,id }) => {
+        const elem = document.querySelector(`#${id}`)
+        return { id: id, box: elem.getBoundingClientRect() }
       })
 
       // The first heading within the viewport is the one we want to highlight.
@@ -98,62 +102,60 @@ const useActiveHeading = headings => {
 
   return activeHeadingId
 }
-
-const getStylesForDepth = (depth, isActiveHeading) => {
-  const base = {
-    color: isActiveHeading ? "red" : undefined
-  }
-
-  switch (depth) {
-    case 1:
-      return {
-        ...base,
-        marginTop: 10,
-        fontSize: 15
-      }
-
-    case 2:
-      return {
-        ...base,
-        marginTop: 3,
-        fontSize: 14,
-        paddingLeft: 12
-      }
-
-    case 3:
-      return {
-        ...base,
-        marginTop: 3,
-        fontSize: 12,
-        paddingLeft: 24
-      }
-
-    default:
-      throw new Error("Unsupported heading size: " + depth)
-  }
-}
+//鼠标划过 过度效果
+// const getStylesForDepth = (depth, isActiveHeading) => {
+//   const base = {
+//     color: isActiveHeading ? "red" : undefined
+//   }
+//
+//   switch (depth) {s
+//     case 1:
+//       return {
+//         ...base,
+//         marginTop: 10,
+//         fontSize: 15
+//       }
+//
+//     case 2:
+//       return {
+//         ...base,
+//         marginTop: 3,
+//         fontSize: 14,
+//         paddingLeft: 12
+//       }
+//
+//     case 3:
+//       return {
+//         ...base,
+//         marginTop: 3,
+//         fontSize: 12,
+//         paddingLeft: 24
+//       }
+//
+//     default:
+//       throw new Error("Unsupported heading size: " + depth)
+//   }
+// }
 
 const Wrapper = styled.div`
-  margin-bottom: 32px;
-`
+              margin-bottom: 32px;
+              `
 
 const TocHeading = styled(Heading)`
-  color: var(--color-gray-900);
-  margin-bottom: 16px;
-`
+              margin-bottom: 16px;
+              `
 
 const ContentLinkHeading = styled.a`
-  display: block;
-  opacity: 0.7;
-  color: var(--color-gray-800);
-  text-decoration: none;
-  transition: opacity 500ms;
+              display: block;
+              opacity: 0.7;
+              text-decoration: none;
+              transition: opacity 500ms;
 
-  &:hover,
-  &:focus {
-    opacity: 1;
-    transition: opacity 0ms;
-  }
-`
+              &:hover,
+              &:focus {
+              opacity: 1;
+              transition: opacity 0ms;
+            }
+              `
 
 export default TableOfContents

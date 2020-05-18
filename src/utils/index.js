@@ -1,13 +1,14 @@
-export const slugify = (str = "") => {
-  let slug = str
-    .replace(/\s/g, "-")
-  // If the value starts with a number, swap it out!
-  // Doing this in a dumb way for now.
-  if (slug.match(/^[\d]{1,2}-/)) {
-    slug = slug.replace(/^[\d]{1,2}-/, "digit")
+export const formatTitle = () => {
+  let titles = {}
+  console.log('titles',titles)
+  return function(str = "") {
+    let slug = `_${str.replace(/\s/g, "-")}`
+    while (titles[slug]) {
+      slug += "_"
+    }
+    titles[slug] = true
+    return slug
   }
-
-  return slug
 }
 
 export const throttle = (func, limit) => {
