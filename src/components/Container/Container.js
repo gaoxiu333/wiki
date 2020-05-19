@@ -56,7 +56,7 @@ const Container = (props) => {
   }, [])
   if (!mode) {
     const now = +new Date()
-    let storage = localStorage.getItem("mode")
+    let storage = window.localStorage.getItem("mode")
 
 
     const invalidTime = 12 * 60 * 60 * 1000
@@ -69,7 +69,7 @@ const Container = (props) => {
   }
 
   function handleClick() {
-    localStorage.setItem("mode", `${mode === "dark" ? "light" : "dark"}-${+new Date()}`)
+    window.localStorage.setItem("mode", `${mode === "dark" ? "light" : "dark"}-${+new Date()}`)
     setMode(mode => mode === "dark" ? "light" : "dark")
   }
 
