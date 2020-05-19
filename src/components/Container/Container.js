@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react"
 import { BREAKPOINTS, READING_WIDTH } from "../../constants"
 import { ThemeContext, themes } from "../them-context"
 import { isSystemDarkMode } from "../../utils"
-import { func } from "prop-types"
 
 const GlobalStyle = createGlobalStyle`
   body{
