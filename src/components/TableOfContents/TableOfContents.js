@@ -150,7 +150,10 @@ const ContentLinkHeading = styled.a`
               opacity: 0.7;
               text-decoration: none;
               transition: opacity 500ms;
-
+              font-size: 12px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
               &:hover,
               &:focus {
               opacity: 1;
