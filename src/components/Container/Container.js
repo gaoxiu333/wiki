@@ -49,14 +49,14 @@ const Container = (props) => {
     return function() {
       if (typeof mql.addListener === "function") {
         mql.removeListener(systemMode)
-      }else{
-        mql.removeEventListener('change',systemMode)
+      } else {
+        mql.removeEventListener("change", systemMode)
       }
     }
   }, [])
   if (!mode) {
     const now = +new Date()
-    let storage = window && window.localStorage.getItem("mode")
+    let storage = typeof window === "undefined" ? window.localStorage.getItem("mode") : ""
 
 
     const invalidTime = 12 * 60 * 60 * 1000
