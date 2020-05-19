@@ -3,7 +3,6 @@ import styled from "styled-components"
 
 
 const Title = ({ mdx }) => {
-  console.log(mdx)
   return (
     <Wrapper>
       <HeaderTitle>{mdx.frontmatter.title}</HeaderTitle>

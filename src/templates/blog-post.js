@@ -4,7 +4,6 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 
 
 export default function BlogPost({data}){
-    console.log(data)
   return (
     <div>
       <h1>test</h1>
