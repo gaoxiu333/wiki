@@ -56,7 +56,7 @@ const Container = (props) => {
   }, [])
   if (!mode) {
     const now = +new Date()
-    let storage = window.localStorage.getItem("mode")
+    let storage = window && window.localStorage.getItem("mode")
 
 
     const invalidTime = 12 * 60 * 60 * 1000
