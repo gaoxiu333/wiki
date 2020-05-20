@@ -12,10 +12,11 @@ const codeTheme = { light, dark }
 const CodeBlock = ({ children, className, live }) => {
   const { mode } = useContext(ThemeContext)
   const language = className ? className.replace(/language-/, "") : "sh"
+  const scope = {styled}
   if (live) {
     return (
       <div style={{ marginTop: "40px" }}>
-        <LiveProvider code={children} theme={Object.assign({}, codeTheme[mode], {
+        <LiveProvider code={children} scope={scope} noInline={true} theme={Object.assign({}, codeTheme[mode], {
           plain: {
             color: "#2A2A2A",
             backgroundColor: "#F6F6F6",

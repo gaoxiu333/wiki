@@ -55,7 +55,7 @@ const HomePage = () => {
                 </span>
               </div>
               <div>
-                {Boolean(node.frontmatter.tags.toString().trim())
+                {Boolean(node.frontmatter.tags)
                   ? <InternalTags>{node.frontmatter.tags}</InternalTags>
                   : ''}
               </div>

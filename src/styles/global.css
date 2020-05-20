@@ -394,6 +394,13 @@ code, kbd,pre {
 /*    font-size: .8em;*/
 /*}*/
 
+blockquote{
+    margin: 1em;
+    border-left: 1px dashed #999;
+    padding-left: 1em;
+    font-size: .8em;
+}
+
 /*动画*/
 
 #gatsby-plugin-page-progress{

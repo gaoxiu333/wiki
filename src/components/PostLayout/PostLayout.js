@@ -36,7 +36,7 @@ const components = {
   code: CodeBlock,
   h1: Heading.H1,
   h2: Heading.H2,
-  h3: Heading.H3
+  h3: Heading.H3,
 }
 export default function PostLayout({ data }) {
   formatAllTitle = formatTitle()
@@ -99,7 +99,6 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
-        tags
         date(formatString: "YYYY/MM/DD")
       }
       headings {
