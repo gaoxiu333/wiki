@@ -63,7 +63,7 @@ const useActiveHeading = headings => {
       // If neither condition is met, I'll assume I'm still in the intro,
       // although this would have to be a VERY long intro to ever be true.
 
-      let headingBoxes = headings.map(({ value,id }) => {
+      let headingBoxes = headings.map(({ id }) => {
         const elem = document.querySelector(`#${id}`)
         return { id: id, box: elem.getBoundingClientRect() }
       })

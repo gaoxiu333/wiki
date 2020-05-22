@@ -7,11 +7,18 @@ module.exports = {
   plugins: [
     `gatsby-plugin-styled-components`,// css-in-js
     `gatsby-remark-katex`,
+    `gatsby-remark-images`,
     { // mdx插件，兼容md和mdx格式文件
       resolve: `gatsby-plugin-mdx`,
       options:{
         extensions:['.mdx','.md'],
         gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1200,
+            },
+          },
           {
             resolve: `gatsby-remark-katex`,
             options: {
@@ -32,6 +39,13 @@ module.exports = {
       options: {
         name: `src`,
         path: `${__dirname}/src/pages/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
       },
     },
     {
