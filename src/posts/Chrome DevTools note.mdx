@@ -38,7 +38,7 @@ import Icon from '../components/icon'
 
 ## Console panel
 
-![图列了](../images/devtools2.png)
+![图列了](../images/dev-tools1.png)
 1. 选择 JavaScript 执行环境；默认 top，可以选择其页面中的其他环境，如`iframe`环境
 
 2. 实时表达式，可实时查看一个变量的值，或者一个表达式的结果。
@@ -80,7 +80,7 @@ import Icon from '../components/icon'
 
 ## Sources panel
 
-![图片裂了呀！](../images/devtools1.png)
+![图片裂了呀！](../images/dev-tools2.png)
 
 1. File Navigator 面板，有关页面的所有文件。
 2. Code Editor 面板，在 File Navigator 面板选择文件后，在这里显示文件内容。
@@ -132,7 +132,7 @@ DevTools中有多种断点方式
 
 `DOMContentLoaded` 和 `load` 事件
 
-![图裂了！](../images/devtools3.png)
+![图裂了！](../images/dev-tools3.png)
 
 > 图中蓝色表示 DOMContentLoaded 事件，红色表示 load事件
 
@@ -145,20 +145,20 @@ DevTools中有多种断点方式
 4. Command + E 开始记录
 5. 点击 Stop 停止记录
 
-![图裂了！](../images/devtools4.png)
+![图裂了！](../images/dev-tools4.png)
 
 ### 选择一部分 Overview 进行分析
 在 Overview 中拖动鼠标，选中一部分，Frames、Main等 会显示选中的这一段的分析；可使用键盘或者鼠标进行缩放和移动。
--   鼠标：单击任何任一背景，左右移动，向上放大，向下缩小。
--   键盘：使用`W`、`A`、`S`、`D`，可缩放和移动。
+-   **鼠标：**单击任何任一背景，左右移动，向上放大，向下缩小。
+-   **键盘：**使用`W`、`A`、`S`、`D`，可缩放和移动。
 
 > 想要在`Main`中查看很长的火焰图，可以用鼠标选中，向下移动查看。
 
 ### Overview
 
-- FPS 绿色越高越好，表示FPS越高；上方的红色表示影响用户体验。
-- CPU 当CPU充满颜色时，说明此时CPU满负荷；如果长时间处于满负荷，可能时需要优化了。
-- Frames 鼠标划过，显示每一帧的时间和FPS的值
+- **FPS：** 绿色越高表示`FPS`越高，绿色越高越好；上方的红色表示影响用户体验。
+- **CPU：** 当`CPU`充满颜色时，说明此时`CPU`满负荷；如果长时间处于满负荷，可能时需要优化了。
+- **Frames：** 鼠标划过，显示每一帧的`时间`和`FPS`的值
 
 ### 查看主线程活动
 展开`Main`可查看火焰图，记录了主线程上发生了什么活动；x轴表示时间，y轴表示调用栈，上面的事件导致下面的事件。

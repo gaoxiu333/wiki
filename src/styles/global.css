@@ -411,3 +411,8 @@ blockquote{
 #gatsby-plugin-page-progress{
     background: linear-gradient(90deg, #ffcd00, #59b287, #59b287, #4c5faa, #f9423a);
 }
+
+/*hack*/
+img{
+    box-shadow:none !important;
+}
