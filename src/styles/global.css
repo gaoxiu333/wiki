@@ -385,6 +385,11 @@ code, kbd,pre {
 
 
 }
+code{
+    color: rgb(225, 0, 152);
+    padding: .2em .4em;
+    /*background-color: #f6f6f6;*/
+}
 
 /*引用的格式不太符合当前的主题*/
 /*blockquote {*/
