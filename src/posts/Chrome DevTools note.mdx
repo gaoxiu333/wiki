@@ -112,14 +112,14 @@ DevTools中有多种断点方式
 
 ### 进行调试
 
-在图中`3` Debugging 面板观察和调试，在这里可以看到调用栈（Call Stack）和执行环境的变量（Scope）。
+在图中 3 Debugging 面板观察和调试，在这里可以看到调用栈（Call Stack）和执行环境的变量（Scope）。
 - **Scope**：调试中可修改变量的值
 - **Watch**：调试时，实时观察一个变量的值，也可以输入一个表达式，查看实时结果
 - **Call Stack**：查看函数的调用栈
 
 ### 跳过断点
 
-图中`8`，依次向右
+图中 8 ，依次向右
 1. 执行代码，直到遇到下一个
 2. 执行当前行，到下一行暂停
 3. 遇到函数，可以进入函数内
@@ -147,35 +147,38 @@ DevTools中有多种断点方式
 
 ![图裂了！](../images/dev-tools4.png)
 
-### 选择一部分 Overview 进行分析
-在 Overview 中拖动鼠标，选中一部分，Frames、Main等 会显示选中的这一段的分析；可使用键盘或者鼠标进行缩放和移动。
--   **鼠标：**单击任何任一背景，左右移动，向上放大，向下缩小。
--   **键盘：**使用`W`、`A`、`S`、`D`，可缩放和移动。
-
-> 想要在`Main`中查看很长的火焰图，可以用鼠标选中，向下移动查看。
-
 ### Overview
 
 - **FPS：** 绿色越高表示`FPS`越高，绿色越高越好；上方的红色表示影响用户体验。
 - **CPU：** 当`CPU`充满颜色时，说明此时`CPU`满负荷；如果长时间处于满负荷，可能时需要优化了。
 - **Frames：** 鼠标划过，显示每一帧的`时间`和`FPS`的值
 
+### 选择一部分进行分析
+在 Overview 中拖动鼠标，选中一部分；Frames、Main等会显示选中的这一段的分析，可使用键盘或者鼠标进行缩放和移动。
+-   **鼠标：**单击任何任一背景，左右移动，向上放大，向下缩小。
+-   **键盘：**使用`W`、`A`、`S`、`D`，可缩放和移动。
+
+> 想要在`Main`中查看很长的火焰图，可以用鼠标选中，向下移动查看。
+
+
 ### 查看主线程活动
 展开`Main`可查看火焰图，记录了主线程上发生了什么活动；x轴表示时间，y轴表示调用栈，上面的事件导致下面的事件。
 通常黄色表示脚本活动，紫色表示渲染活动；如果只想看渲染活动，可在设置中选择`Disable JavaScript Samples`
 
-**查看Main分析**
+除了`Main`提供的火焰图，还可以查看底部的选项卡
+-   **Call Tree：**当你想查看那个根活动产生了最多的事件
+-   **Bottom-Up：**当你想查看哪一个事件花费的事件最长
+-   **Event Log：**当你想按照事件顺讯查看活动时
+-   **Layers：** 勾选`Enable advanced paint instrumentation(show)`，可查看图层信息
 
-除了`Main`提供的火焰图，还可以通过底部提供的选项卡分析
--   Call Tree：当你想查看那个根活动产生了最多的事件
--   Bottom-Up：当你想查看哪一个事件花费的事件最长
--   Event Log：当你想按照事件顺讯查看活动时
+>`Layers`和 More tools 中的`Layers`一样，也可以配合`Animations`调试动画。
 
-**查看GPU活动**
 
-**Network**
+### Network
 
 展开`Network`可查看网路请求的分析情况。
+
+![](../images/dev-tools5.png)
 
 - HTML：蓝色
 - CSS：紫色
@@ -186,21 +189,12 @@ DevTools中有多种断点方式
 
 点击选择一个请求查看：
 
-坐上角的深蓝色表示该请求的优先级较高，如果是浅蓝色表示优先级较低
-- 左行是Connection Start事件组之前的所有事件（包括事件）。换句话说，这是Request Sent排他性的一切。
+左上角的深蓝色表示该请求的优先级较高，如果是浅蓝色表示优先级较低
+- 左行是Connection Start事件组之前的所有事件（包括事件）
 - 条形图的浅色部分是Request Sent和Waiting (TTFB)。
 - 条形图的深色部分是Content Download。
-- 正确的选择实际上是等待主线程所花费的时间。在“ 时间”选项卡中未显示。
 
-> 和 Network 面板相对应。
-
-
-
-### 查看图层信息
-1. 勾选 Enable advanced paint instrumentation(show)
-2. 展开 Frames ，在底部选择 Layers 标签页
-3. 也可以在 More tools 中选择 Layers
-
+> 和 Network Panel 相对应。
 
 
 ## JavaScript Profiler
@@ -212,13 +206,14 @@ DevTools中有多种断点方式
 
 > 也可以在 Console 面板通过调用 `profile()`和`profileEnd()`录制，参考：[developers](https://developers.google.com/web/tools/chrome-devtools/console/utilities#profilename_and_profileendname)
 
-**查看分析**
--   Overview：上面的折线图表示调用栈的深度，值越大表示越深。
--   Call Stacks：x轴是时间，y轴表示调用栈；
+### 查看Profiler分析
+![](../images/dev-tools6.png)
+
+-   **Overview：**上面的折线图表示调用栈的深度，值越大表示越深。
+-   **Call Stacks：**x轴是时间，y轴表示调用栈；
 
 > y轴表示的调用栈深度可能不重要，但是在x轴上花费的时间很长的话，可能是需要优化了；
 > 如果将鼠标放在某个调用栈上，最后一行显示 Not optimized，说明该功能存在潜在的优化。
 
----
-参考：https://developers.google.com/web/tools/chrome-devtools
+参考链接：https://developers.google.com/web/tools/chrome-devtools
 
