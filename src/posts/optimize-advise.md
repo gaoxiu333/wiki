@@ -5,7 +5,7 @@ date: 2020-05-25 00:33:42
 ---
 
 ## 关键渲染路径
-浏览器为页面的第一次绘制需要执行的顺序称为 关键渲染路径(Critical Rendering Path)
+浏览器为页面的第一次绘制需要执行的顺序称为**关键渲染路径（Critical Rendering Path）**
 
 1. DOM：处理HTML标记并构建DOM树
 2. CSSOM：处理CSS标记并构建CSSOM树

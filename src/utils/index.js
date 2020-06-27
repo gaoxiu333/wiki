@@ -1,3 +1,8 @@
+
+import {getFCP} from 'web-vitals'
+
+getFCP(console.log)
+
 export const formatTitle = () => {
   let titles = {}
   return function(str = "") {
@@ -30,5 +35,6 @@ export const throttle = (func, limit) => {
     }
   }
 }
-
 export const isSystemDarkMode = () => typeof window !== "undefined" ? window.matchMedia("(prefers-color-scheme: dark)").matches : ""
+
+
